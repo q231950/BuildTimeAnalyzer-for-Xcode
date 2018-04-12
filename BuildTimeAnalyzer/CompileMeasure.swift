@@ -69,7 +69,7 @@ import Foundation
     }
 
     func write(into csv: CSVWriter) {
-        csv.insert(line: ["\(self.timeString)", self.fileInfo, self.filename, "\(references)"])
+        csv.insert(line: ["\(self.time)", self.fileInfo, self.filename, "\(references)"])
     }
 
     subscript(column: Int) -> String {
