@@ -28,6 +28,7 @@
 		2AE775121D225D5D00D1A744 /* DerivedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE775111D225D5D00D1A744 /* DerivedDataManager.swift */; };
 		2AF821441D21D6B900D65186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF821431D21D6B900D65186 /* AppDelegate.swift */; };
 		2AF821461D21D6B900D65186 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AF821451D21D6B900D65186 /* Assets.xcassets */; };
+		3BFFB4D1207F983B00B39DC8 /* CSVWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFB4D0207F983B00B39DC8 /* CSVWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		2AF8214A1D21D6B900D65186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AF8214F1D21D6B900D65186 /* BuildTimeAnalyzerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BuildTimeAnalyzerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF821551D21D6B900D65186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BFFB4D0207F983B00B39DC8 /* CSVWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				2A3164C41D21D73F00064045 /* RawMeasure.swift */,
 				2839B8681FD2896F004C075C /* ViewControllerDataSource.swift */,
 				2A5404021D86DE0C00DBD44C /* XcodeDatabase.swift */,
+				3BFFB4D0207F983B00B39DC8 /* CSVWriter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				2A9807DD1D7C71F900B9232C /* DirectoryMonitor.swift in Sources */,
 				2A3164DA1D21D90100064045 /* NSData+GZIP.m in Sources */,
+				3BFFB4D1207F983B00B39DC8 /* CSVWriter.swift in Sources */,
 				2A3164C91D21D73F00064045 /* LogProcessor.swift in Sources */,
 				2839B8691FD2896F004C075C /* ViewControllerDataSource.swift in Sources */,
 				2A5404011D86D01700DBD44C /* BuildManager.swift in Sources */,
@@ -459,6 +463,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BuildTimeAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.canemedia.BuildTimeAnalyzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BuildTimeAnalyzerTests-Bridging-Header.h";
@@ -473,6 +478,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = BuildTimeAnalyzer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.canemedia.BuildTimeAnalyzer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BuildTimeAnalyzerTests-Bridging-Header.h";

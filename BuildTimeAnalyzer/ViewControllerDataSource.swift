@@ -31,6 +31,14 @@ class ViewControllerDataSource {
     private var originalData = [CompileMeasure]()
     private var processedData = [CompileMeasure]()
 
+    func csvExportableData() -> String {
+        let writer = CSVWriter(labels: ["Time", "FileInfo", "FileName", "References"])
+        for line in originalData {
+            line.write(into: writer)
+        }
+        return writer.outputData()
+    }
+
     func resetSourceData(newSourceData: [CompileMeasure]) {
         originalData = newSourceData
         processData()

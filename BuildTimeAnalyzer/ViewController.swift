@@ -34,6 +34,17 @@ class ViewController: NSViewController {
             updateViewForState()
         }
     }
+
+    func exportToFile() {
+        let dialog = NSSavePanel()
+        dialog.title = "Where to save"
+        dialog.beginSheetModal(for: self.view.window!) { (response) in
+            if let output = dialog.url {
+                let data = self.dataSource.csvExportableData()
+                try? data.write(to: output, atomically: true, encoding: String.Encoding.utf8)
+            }
+        }
+    }
     
     // MARK: Lifecycle
 

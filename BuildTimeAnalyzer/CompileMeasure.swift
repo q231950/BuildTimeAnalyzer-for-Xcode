@@ -68,6 +68,10 @@ import Foundation
         self.references = 1
     }
 
+    func write(into csv: CSVWriter) {
+        csv.insert(line: ["\(self.timeString)", self.fileInfo, self.filename, "\(references)"])
+    }
+
     subscript(column: Int) -> String {
         switch column {
         case 0:

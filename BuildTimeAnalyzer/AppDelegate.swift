@@ -26,6 +26,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: Actions
+
+    @IBAction func exportAction(_ sender: NSMenuItem) {
+        guard let vc = viewController else { return }
+        vc.exportToFile()
+    }
     
     @IBAction func navigateToProjectSelection(_ sender: NSMenuItem) {
         configureMenuItems(showBuildTimesMenuItem: true)
