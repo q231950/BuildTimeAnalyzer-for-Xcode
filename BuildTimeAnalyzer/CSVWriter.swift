@@ -5,7 +5,7 @@ final class CSVWriter {
     private let lineSeperator: String
     private let fieldSeperator: String
 
-    init(labels: [String], lineSeperator: String = "\n", fieldSeperator: String = ";") {
+    init(labels: [String], lineSeperator: String = "\n", fieldSeperator: String = ",") {
         self.labels = labels
         self.lineSeperator = lineSeperator
         self.fieldSeperator = fieldSeperator
