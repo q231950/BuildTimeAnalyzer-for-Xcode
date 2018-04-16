@@ -34,7 +34,7 @@ class ViewControllerDataSource {
     private var baselines = [String: Double]()
 
     func csvExportableData() -> String {
-        let writer = CSVWriter(labels: ["Time", "FileInfo", "FileName", "References"])
+        let writer = CSVWriter(labels: ["Time", "FileInfo", "FileName", "References", "Baseline"])
         for line in originalData {
             line.write(into: writer)
         }

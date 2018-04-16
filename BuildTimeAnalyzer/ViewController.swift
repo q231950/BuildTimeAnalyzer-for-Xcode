@@ -138,10 +138,10 @@ class ViewController: NSViewController {
     }
     
     func makeWindowTopMost(topMost: Bool) {
-//        if let window = NSApplication.shared.windows.first {
-//            let level: CGWindowLevelKey = topMost ? .floatingWindow : .normalWindow
-//            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(level)))
-//        }
+        if let window = NSApplication.shared.windows.first {
+            let level: CGWindowLevelKey = topMost ? .floatingWindow : .normalWindow
+            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(level)))
+        }
     }
     
     // MARK: Actions

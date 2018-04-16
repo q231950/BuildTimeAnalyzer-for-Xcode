@@ -74,7 +74,7 @@ import Foundation
     }
 
     func write(into csv: CSVWriter) {
-        csv.insert(line: ["\(self.time)", self.fileInfo, self.filename, "\(references)"])
+        csv.insert(line: ["\(self.time)", self.fileInfo, self.filename, "\(references)", self.baselineTime.map({"\($0)"}) ?? ""])
     }
 
     func makeBaseline() {
