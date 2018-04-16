@@ -138,10 +138,10 @@ class ViewController: NSViewController {
     }
     
     func makeWindowTopMost(topMost: Bool) {
-        if let window = NSApplication.shared.windows.first {
-            let level: CGWindowLevelKey = topMost ? .floatingWindow : .normalWindow
-            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(level)))
-        }
+//        if let window = NSApplication.shared.windows.first {
+//            let level: CGWindowLevelKey = topMost ? .floatingWindow : .normalWindow
+//            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(level)))
+//        }
     }
     
     // MARK: Actions
@@ -157,7 +157,12 @@ class ViewController: NSViewController {
     }
     
     @IBAction func visitDerivedData(_ sender: AnyObject) {
-        NSWorkspace.shared.openFile(derivedDataTextField.stringValue)
+//        NSWorkspace.shared.openFile(derivedDataTextField.stringValue)
+    }
+
+    @IBAction func makeBaseline(_ sender: AnyObject) {
+        dataSource.currentDataIsBaseline()
+        tableView.reloadData()
     }
     
     
@@ -220,6 +225,15 @@ class ViewController: NSViewController {
         processor.processDatabase(database: database) { [weak self] (result, didComplete, didCancel) in
             self?.handleProcessorUpdate(result: result, didComplete: didComplete, didCancel: didCancel)
         }
+        test()
+    }
+
+    func test() {
+        let a = 1
+        let b = 2
+        let c = 3
+        let x = 99 + a + b + c
+        print("\(x)")
     }
     
     func handleProcessorUpdate(result: [CompileMeasure], didComplete: Bool, didCancel: Bool) {
@@ -273,7 +287,7 @@ extension ViewController: NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         guard let item = dataSource.measure(index: row) else { return false }
-        NSWorkspace.shared.openFile(item.path)
+        /*NSWorkspace.shared.openFile(item.path)
 
         let gotoLineScript =
             "tell application \"Xcode\"\n" +
@@ -291,7 +305,8 @@ extension ViewController: NSTableViewDataSource {
             }
         }
         
-        return true
+        return true*/
+        return false
     }
 }
 
@@ -331,5 +346,17 @@ extension ViewController: BuildManagerDelegate {
 extension ViewController: ProjectSelectionDelegate {
     func didSelectProject(with database: XcodeDatabase) {
         processLog(with: database)
+    }
+
+    func didUpdateSelectedProject(with database: XcodeDatabase) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+
+            self.updateTotalLabel(with: database.buildTime)
+
+            self.processor.processDatabase(database: database) { [weak self] (result, didComplete, didCancel) in
+                self?.handleProcessorUpdate(result: result, didComplete: didComplete, didCancel: didCancel)
+            }
+            self.tableView.reloadData()
+        }
     }
 }

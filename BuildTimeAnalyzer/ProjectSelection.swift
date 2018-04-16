@@ -7,6 +7,7 @@ import Cocoa
 
 protocol ProjectSelectionDelegate: class {
     func didSelectProject(with database: XcodeDatabase)
+    func didUpdateSelectedProject(with database: XcodeDatabase)
 }
 
 class ProjectSelection: NSObject {
@@ -15,6 +16,8 @@ class ProjectSelection: NSObject {
     weak var delegate: ProjectSelectionDelegate?
     
     private var dataSource: [XcodeDatabase] = []
+
+    private var lastSelection: Int? = nil
     
     static private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -29,12 +32,17 @@ class ProjectSelection: NSObject {
         }.sorted(by: { $0.modificationDate > $1.modificationDate })
         
         tableView.reloadData()
+
+        if let last = lastSelection {
+            delegate?.didUpdateSelectedProject(with: dataSource[last])
+        }
     }
     
     // MARK: Actions
     
     @IBAction func didSelectCell(_ sender: NSTableView) {
         guard sender.selectedRow != -1 else { return }
+        lastSelection = sender.selectedRow
         delegate?.didSelectProject(with: dataSource[sender.selectedRow])
     }
 }

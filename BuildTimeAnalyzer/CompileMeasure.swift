@@ -13,6 +13,9 @@ import Foundation
     dynamic var filename: String
     var references: Int
 
+    // baseline
+    var baselineTime: Double?
+
     private var locationArray: [Int]
 
     public enum Order: String {
@@ -52,6 +55,7 @@ import Foundation
         self.filename = filename
         self.locationArray = locations
         self.references = references
+        self.baselineTime = nil
     }
 
     init?(rawPath: String, time: Double) {
@@ -66,22 +70,32 @@ import Foundation
         self.filename = filename
         self.locationArray = [1,1]
         self.references = 1
+        self.baselineTime = nil
     }
 
     func write(into csv: CSVWriter) {
         csv.insert(line: ["\(self.time)", self.fileInfo, self.filename, "\(references)"])
     }
 
+    func makeBaseline() {
+        self.baselineTime = self.time
+    }
+
     subscript(column: Int) -> String {
         switch column {
         case 0:
+            if let b = baselineTime {
+                return "\(timeString) (\(b))"
+            }
             return timeString
         case 1:
             return fileInfo
         case 2:
             return "\(references)"
-        default:
+        case 3:
             return code
+        default:
+            return baselineTime.map({"\(time / $0)"}) ?? ""
         }
     }
 }

@@ -31,6 +31,8 @@ class ViewControllerDataSource {
     private var originalData = [CompileMeasure]()
     private var processedData = [CompileMeasure]()
 
+    private var baselines = [String: Double]()
+
     func csvExportableData() -> String {
         let writer = CSVWriter(labels: ["Time", "FileInfo", "FileName", "References"])
         for line in originalData {
@@ -39,8 +41,20 @@ class ViewControllerDataSource {
         return writer.outputData()
     }
 
+    func currentDataIsBaseline() {
+        originalData.forEach { i in
+            self.baselines[i.fileAndLine] = i.time
+            i.baselineTime = -1
+        }
+    }
+
     func resetSourceData(newSourceData: [CompileMeasure]) {
-        originalData = newSourceData
+        originalData = newSourceData.map { entry in
+            if let existingbaseline = self.baselines[entry.fileAndLine] {
+                entry.baselineTime = existingbaseline
+            }
+            return entry
+        }
         processData()
     }
 
