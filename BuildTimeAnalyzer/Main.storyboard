@@ -550,6 +550,16 @@ Gw
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wyZ-eU-XEt">
                                 <rect key="frame" x="0.0" y="0.0" width="999" height="473"/>
                                 <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sf4-9s-r0h">
+                                        <rect key="frame" x="24" y="345" width="81" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eYE-1M-4ng">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="multipeer:" target="rPt-NT-nkU" id="767-l4-faE"/>
+                                        </connections>
+                                    </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-8w-91Y">
                                         <rect key="frame" x="18" y="432" width="98" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Instructions" id="9Ga-i4-eZ4">
@@ -746,6 +756,8 @@ Gw
                                     <constraint firstItem="PV7-TD-diE" firstAttribute="top" secondItem="Zkv-Tf-sdq" secondAttribute="bottom" constant="35" id="BO5-sq-vNo"/>
                                     <constraint firstItem="Um0-zQ-09O" firstAttribute="top" secondItem="c6J-cx-fi8" secondAttribute="bottom" constant="8" id="CCC-q5-86U"/>
                                     <constraint firstItem="O5K-4i-z6g" firstAttribute="leading" secondItem="PV7-TD-diE" secondAttribute="leading" id="Dpn-sp-Fni"/>
+                                    <constraint firstItem="sf4-9s-r0h" firstAttribute="leading" secondItem="wyZ-eU-XEt" secondAttribute="leading" constant="30" id="HAH-OE-bUk"/>
+                                    <constraint firstItem="sf4-9s-r0h" firstAttribute="top" secondItem="wyZ-eU-XEt" secondAttribute="top" constant="100" id="KMA-Aa-92i"/>
                                     <constraint firstItem="c6J-cx-fi8" firstAttribute="leading" secondItem="Um0-zQ-09O" secondAttribute="leading" id="NIy-Q9-e38"/>
                                     <constraint firstItem="Um0-zQ-09O" firstAttribute="centerX" secondItem="wyZ-eU-XEt" secondAttribute="centerX" id="O4l-6w-kjo"/>
                                     <constraint firstItem="coU-tR-Iyy" firstAttribute="leading" secondItem="ptj-Cb-LDq" secondAttribute="trailing" constant="8" id="Ou4-bQ-rT0"/>

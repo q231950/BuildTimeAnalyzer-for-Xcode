@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
+        ConnectionManager.start()
         alwaysInFrontMenuItem.state = UserSettings.windowShouldBeTopMost ? .on : .off
     }
     
@@ -26,6 +27,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: Actions
+
+    @IBAction func multipeer(_ sender: NSMenuItem) {
+        ConnectionManager.sendEvent(Event.take, object: ["signature": "lala"], toPeers: nil)
+    }
 
     @IBAction func exportAction(_ sender: NSMenuItem) {
         guard let vc = viewController else { return }
